@@ -1009,8 +1009,8 @@ namespace sl {
                 delay(10);
                 break;
             case MotorCtrlSupportRpm:
-                sl_lidar_payload_motor_pwm_t motor_rpm;
-                motor_rpm.pwm_value = speed;
+                sl_lidar_payload_hq_spd_ctrl_t motor_rpm;
+                motor_rpm.rpm = speed;
 
                 ans = _sendCommandWithoutResponse(SL_LIDAR_CMD_HQ_MOTOR_SPEED_CTRL, &motor_rpm, sizeof(motor_rpm), true);
                 if (!ans) return ans;
