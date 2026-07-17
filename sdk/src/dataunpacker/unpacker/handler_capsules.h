@@ -113,6 +113,8 @@ protected:
 
 	SlamtecLidarTimingDesc _cachedTimingDesc;
 
+	int              _lastNodeSyncBit;
+
 };
 
 

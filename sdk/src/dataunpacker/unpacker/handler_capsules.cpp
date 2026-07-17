@@ -610,7 +610,7 @@ UnpackerHandler_DenseCapsuleNode::UnpackerHandler_DenseCapsuleNode()
     : _cached_scan_node_buf_pos(0)
     , _is_previous_capsuledataRdy(false)
     , _cached_last_data_timestamp_us(0)
-
+    , _lastNodeSyncBit(0)
 {
     _cached_scan_node_buf.resize(sizeof(rplidar_response_dense_capsule_measurement_nodes_t));
     memset(&_cachedTimingDesc, 0, sizeof(_cachedTimingDesc));
@@ -735,7 +735,7 @@ void UnpackerHandler_DenseCapsuleNode::reset()
 
 void UnpackerHandler_DenseCapsuleNode::_onScanNodeDenseCapsuleData(rplidar_response_dense_capsule_measurement_nodes_t& dense_capsule, LIDARSampleDataUnpackerInner* engine)
 {
-    static int lastNodeSyncBit = 0;
+    int& lastNodeSyncBit = _lastNodeSyncBit;
     _u64 currentTs = engine->getCurrentTimestamp_uS();
 
     if (_is_previous_capsuledataRdy) {
