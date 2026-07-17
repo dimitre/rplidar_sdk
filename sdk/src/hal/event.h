@@ -59,7 +59,7 @@ public:
 #else
         pthread_mutex_init(&_cond_locker, NULL);
         pthread_condattr_init(&_cond_attr);
-#ifdef _MACOS
+#ifdef __APPLE__
         // sadly, there is no monotonic clock support for pthread cond variable on MACOS
         // if time slew is a big issue, try to reimplement it using kqueue/kevent
 #else
@@ -128,7 +128,7 @@ public:
                 }else
                 {
                     int timewaitresult = 0;
-#ifdef _MACOS
+#ifdef __APPLE__
                     timespec wait_time;
                     
                     wait_time.tv_sec = timeout / 1000;

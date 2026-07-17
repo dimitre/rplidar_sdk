@@ -35,9 +35,9 @@
 #if defined(_WIN32)
 
 #include "arch/win32/arch_win32.h"
-#elif defined(_MACOS)
+#elif defined(__APPLE__)
 #include "arch/macOS/arch_macOS.h"
-#elif defined(__GNUC__)
+#elif defined(__linux__)
 #include "arch/linux/arch_linux.h"
 #else
 #error "unsupported target"
